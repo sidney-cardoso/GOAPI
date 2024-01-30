@@ -1,0 +1,60 @@
+
+# Criando uma categoria
+
+POST http://localhost:8080/category HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "name": "Móveis"
+}
+
+### 
+# Buscando categoria por ID
+
+GET http://localhost:8080/category/87e67478-89d2-43a0-9809-935eccea4beb HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+
+###
+# Listando todas as categorias
+
+GET http://localhost:8080/category HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+
+###
+# Criando produto
+POST http://localhost:8080/product HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "name": "Sofá de canto",
+    "description": "Sofá da cor preta,  lugares",
+    "price": 2000,
+    "image_url": "https://source.unsplash.com/random",
+    "category_id": "bda8fe5e-5138-409d-b88f-b9145b3b671a"
+}
+
+### 
+# Listando produtos
+
+GET http://localhost:8080/product HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+###
+# Buscando produto por ID
+GET http://localhost:8080/product/14aaea01-d6e8-4e52-975d-d4c7b6b60da1 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+###
+# Buscando produto por categoria
+
+GET http://localhost:8080/product/category/df4a4322-2c54-49e2-bf8d-a1722f23d91a HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
