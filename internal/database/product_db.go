@@ -51,6 +51,7 @@ func (prodDB *ProductDB) GetProduct(id string) (*entity.Product, error) {
 		&product.CategoryID,
 		&product.ImageURL,
 	)
+
 	if err != nil {
 		return nil, err
 	}
@@ -68,6 +69,7 @@ func (prodDB *ProductDB) GetProductByCategory(categoryID string) ([]*entity.Prod
 
 	for rows.Next() {
 		var product entity.Product
+
 		if err := rows.Scan(
 			&product.ID,
 			&product.Name,
@@ -79,13 +81,16 @@ func (prodDB *ProductDB) GetProductByCategory(categoryID string) ([]*entity.Prod
 			return nil, err
 		}
 	}
+
 	return products, nil
 }
 
-func (prodDB *ProductDB) CreateProduct(product *entity.Product) (string, error) {
-	_, err := prodDB.db.Exec("INSERT INTO products VALUES (?, ?)", product.ID, product.Name)
+func (prodDB *ProductDB) CreateProduct(product *entity.Product) (*entity.Product, error) {
+	_, err := prodDB.db.
+		Exec("INSERT INTO products (id, name, description, price, category_id, image_url) VALUES (?, ?, ?, ?, ?, ?)",
+			product.ID, product.Name, product.Description, product.Price, product.CategoryID, product.ImageURL)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
-	return product.ID, nil
+	return product, nil
 }
