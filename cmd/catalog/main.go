@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/sidney-cardoso/goapi/internal/database"
 	"github.com/sidney-cardoso/goapi/internal/service"
 	"github.com/sidney-cardoso/goapi/internal/webserver"
