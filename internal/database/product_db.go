@@ -67,8 +67,8 @@ func (prodDB *ProductDB) GetProductByCategory(categoryID string) ([]*entity.Prod
 	}
 	defer rows.Close()
 
+	var product entity.Product
 	for rows.Next() {
-		var product entity.Product
 
 		if err := rows.Scan(
 			&product.ID,
@@ -81,6 +81,7 @@ func (prodDB *ProductDB) GetProductByCategory(categoryID string) ([]*entity.Prod
 			return nil, err
 		}
 	}
+	products = append(products, &product)
 
 	return products, nil
 }
