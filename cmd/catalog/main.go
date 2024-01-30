@@ -27,7 +27,7 @@ func main() {
 	productService := service.NewProductService(*productDB)
 
 	webCategoryHandler := webserver.NewWebCategoryHandler(categoryService)
-	webProductHamdler := webserver.NewWebProductHandler(productService)
+	webProductHandler := webserver.NewWebProductHandler(productService)
 
 	c := chi.NewRouter()
 	c.Use(middleware.Logger)
@@ -36,10 +36,10 @@ func main() {
 	c.Get("/category", webCategoryHandler.GetCategories)
 	c.Post("/category", webCategoryHandler.CreateCategory)
 
-	c.Get("/product/{id}", webProductHamdler.GetProduct)
-	c.Get("/product", webProductHamdler.GetProducts)
-	c.Get("/product/category/{categoryID}", webProductHamdler.GetProductByCategory)
-	c.Post("/product", webProductHamdler.Createproduct)
+	c.Get("/product/{id}", webProductHandler.GetProduct)
+	c.Get("/product", webProductHandler.GetProducts)
+	c.Get("/product/category/{categoryID}", webProductHandler.GetProductByCategory)
+	c.Post("/product", webProductHandler.Createproduct)
 
 	fmt.Println("Server is running on port 8080")
 	http.ListenAndServe(":8080", c)
