@@ -22,13 +22,13 @@ func NewCategory(name string) *Category {
 	}
 }
 
-func NewProduct(name, description string, price float64, categoryID, imageURL string) *Product {
+func NewProduct(name, description, categoryID, imageURL string, price float64) *Product {
 	return &Product{
 		ID:          uuid.New().String(),
 		Name:        name,
 		Description: description,
-		Price:       price,
 		CategoryID:  categoryID,
 		ImageURL:    imageURL,
+		Price:       price,
 	}
 }
